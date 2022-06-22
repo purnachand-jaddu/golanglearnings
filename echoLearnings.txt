@@ -1,0 +1,79 @@
+Middleware.removeTrailingSlash()
+Middleware.bodyLimit()
+
+e.Group() to create a middleware on a set of routes where as e.Use() creates middleware for all routes
+
+Postgrest
+
+
+Routing 
+* Echo.Any() to have same handler for all the routes
+* Echo.Group() to group routes based on pattern, We can have optional middleware for these routes
+* Echo.Match() to use the same handler for some methods
+* What if multiple routes match the URL order is static,Param,MatchAny
+* We can assign names to routes, This can be used to distinguish routes even if they have same handlers
+* Echo.URI() and Echo.Reverse() builds the route url for us
+* Echo.Routes returns all the routes defined in Echo object
+
+Static Files
+* Echo.Static() is used to hide the actual location on the server by proxying it
+* Echo.File() also sets up a route but we can directly put a file here instead of writing handler
+
+Templates
+* What are templates for??
+
+Testing
+
+Middleware
+* Echo.Use is used to register middle ware for all the paths/routes that are registered after the Echo.Use call
+* Echo.Pre is used for all routes irrespective of where it is declared Question : But from code side seems like there is no diff between Pre and Use'
+* Echo.Group with optional middleware
+* Echo.<Method>() with optional middleware 
+* Example on conditional logger middleware.LoggerWithConfig()
+
+Middleware#BasicAuth
+* middleware.BasicAuth
+* middleware.BasicAuthWithConfig
+* middleware.BodyDump
+* middleware.BodyDumpWithConfig //These two are used to dump request/response payloads, Generally not preferable when the payloads are heavy
+* middleware.BodyLimit() 
+* middleware.BodyLImitWithConfig() // These two are used to make sure that "request" Payload is below certain limit
+* CasbinAuthMiddleware for authentication under different modes
+* CORS middleware middleware.CORS(), middleware.CORSWithConfig()
+* CSRF middleware to CSRF attacks, middleware.CSRF(), middleware.CSRFWithConfig()
+* middleware.Decompress(), middleware.DecompressWithConfig() if content-encoding header is set to gzip
+* middleware.Gzip(),middleware.GzipWithConfig() compresses the "Response"
+* Jaeger tracing middleware
+* middleware.JWT() for Json web token authentication
+* middleware.KeyAuth() for key based authentication
+* middleware.Logger() to log the information for request types
+* middleware.MethodOverride(),middleware.MethodOverrideWithConfig() can override POST methods to other types
+* prometheus.NewPrometheus() to collect metrics for the server over time
+* middleware.Proxy() can be used to load balance over multiple urls using middleware.NewRoundRobinBalancer(), middleware.NewRandomBalancer()
+* middleware.ProxyWithConfig() can balance and rewrite the path of request if necessary
+* middleware.RateLimiter() and middleware.RateLimiterWithConfig() used to limit number of requests to a server over given time'
+* middleware.Recover() recovers from panics anywhere in the stack
+* middleware.HTTPSRedirect() redirects all http requests to https requests
+* middleware.HTTPSWWWRedirect(), middleware.HTTPSNONWWWRedirect(), middleware.WWWRedirect(),middleware.NONWWWRedirect()
+* middleware.RequestID() creates a unique ID for a request //But from code side why is it setting id to the Response instead of request
+* middleware.Rewrite() and middleware.RewriteWithConfig() to adjust the paths in the urls, this can also be used to adjust the regex's aswell
+* middleware.secure() provides security against various attacks such as XSS etc
+* session middleware facilitates in session management by storing/accessing cookies
+* middleware.Static() is similar to e.Static() used to access the contents in file system of the server but we can hide the absolute location on server for security reasons
+* middleware.Timeout() and middleware.TimeoutwithConfig() are used to timeout the application after certain time period
+* middleware.RemoveTrailingSlash() , middleware.AddTrailingSlash() , middleware.AddTrailingSlashWithConfig
+
+
+Cookbook ?
+
+
+
+Things to look at
+* TLS what is certificate and key here
+* CORS and its uses
+* embedded files embed mode and live mode
+* c.FormFile() to get the file name from client??
+
+
+
+
